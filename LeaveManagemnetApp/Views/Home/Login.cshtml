@@ -1,0 +1,19 @@
+@* @model List<MongoDB.Bson.BsonDocument> *@
+@* *@
+@* <table> *@
+@*     <tr> *@
+@*         <th>First Name</th> *@
+@*         <th>Last Name</th> *@
+@*         <th>Position</th> *@
+@*         <th>Age</th> *@
+@*     </tr> *@
+@*     @foreach (var employee in Model) *@
+@*     { *@
+@*         <tr> *@
+@*             <td>@employee.AsBsonDocument</td> *@
+@*             $1$ <td>@employee.LastName</td> #1# *@
+@*             $1$ <td>@employee.Email</td> #1# *@
+@*             $1$ <td>@employee.Id</td> #1# *@
+@*         </tr> *@
+@*     } *@
+@* </table> *@
