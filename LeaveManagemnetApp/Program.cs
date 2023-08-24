@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using System;
+using LeaveManagemnetApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ var databaseName = "LeaveApplication";
 var mongoDatabase = mongoClient.GetDatabase(databaseName);
 
 builder.Services.AddSingleton<IMongoDatabase>(mongoDatabase);
+builder.Services.AddScoped<MongoDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

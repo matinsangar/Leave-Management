@@ -18,8 +18,8 @@ public class MongoDbContext
         _database = mongoClient.GetDatabase("LeaveApplication");
     }
 
-    public IMongoCollection<BsonDocument> Employees
+    public IMongoCollection<Employee> Employees
     {
-        get { return _database.GetCollection<BsonDocument>("Employees"); }
+        get { return _database.GetCollection<Employee>("Employees"); }
     }
 }
