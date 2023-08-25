@@ -1,9 +1,40 @@
-@model LeaveManagemnetApp.Views.Account.LoginViewModel
-
+@model List<LeaveManagemnetApp.Models.Employee>
 @{
-    ViewData["Title"] = "AdminPanle";
+    ViewData["Title"] = "AdminPanel";
 }
+<h2>Leave Requests</h2>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th>Employee Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @* @foreach (var request in Model) *@
+    @* { *@
+    @*     <tr> *@
+    @*         <td>@request.EmployeeName</td> *@
+    @*         <td>@request.StartDate.ToShortDateString()</td> *@
+    @*         <td>@request.EndDate.ToShortDateString()</td> *@
+    @*         <td> *@
+    @*             <button class="btn btn-success" onclick="approveRequest('@request.Id')">Approve</button> *@
+    @*             <button class="btn btn-danger" onclick="rejectRequest('@request.Id')">Reject</button> *@
+    @*         </td> *@
+    @*     </tr> *@
+    @* } *@
+    @* </tbody> *@
+</table>
 
-<h2>AdminPanel</h2>
+<script>
+    function approveRequest(requestId) {
+        //TODO!
+    }
 
+    function rejectRequest(requestId) {
+        //TODO!
+    }
+</script>

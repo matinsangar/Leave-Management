@@ -66,10 +66,16 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+    public IActionResult AdminPanel()
+    {
+        return RedirectToAction("index", "Home");
+    }
+
     public IActionResult Approve(int id)
     {
         return RedirectToAction("index", "Home");
     }
+
     public IActionResult RejectLeave(int id)
     {
         return RedirectToAction("index", "Home");
