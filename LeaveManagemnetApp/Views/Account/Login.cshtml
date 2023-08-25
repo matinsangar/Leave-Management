@@ -1,7 +1,15 @@
-
 @model LeaveManagemnetApp.Views.Account.LoginViewModel
 @{
     ViewData["Title"] = "Login";
+}
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+    if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @errorMessage
+        </div>
+    }
 }
 
 <h2>Login</h2>

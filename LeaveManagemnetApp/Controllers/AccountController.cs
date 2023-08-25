@@ -1,7 +1,9 @@
 using LeaveManagemnetApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using LeaveManagemnetApp.Data;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace LeaveManagemnetApp.Controllers;
 
@@ -32,9 +34,18 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(string username, string password)
+    public async Task<IActionResult> Login(string username, string password)
     {
-        return RedirectToAction("Index", "Home");
+        var filter = Builders<Employee>.Filter.Eq("Name", username);
+        var user = await _mongoDbContext.Employees.Find(filter).FirstOrDefaultAsync();
+
+        if (user != null && user.Password == password)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        TempData["ErrorMessage"] = "Invalid username or password.";
+        return RedirectToAction("Login");
     }
 
     [HttpPost]
@@ -43,18 +54,18 @@ public class AccountController : Controller
         var mongoDbContext = HttpContext.RequestServices.GetService<MongoDbContext>();
 
 
-            var employeesCollection = mongoDbContext.Employees;
-            var newEmp = new Employee()
-            {
-                Name = name,
-                Email = email,
-                IsAdmin = false,
-                Password = password
-            };
-            await employeesCollection.InsertOneAsync(newEmp);
-            return RedirectToAction("Index", "Home");
+        var employeesCollection = mongoDbContext.Employees;
+        var newEmp = new Employee()
+        {
+            Name = name,
+            Email = email,
+            IsAdmin = false,
+            Password = password
+        };
+        await employeesCollection.InsertOneAsync(newEmp);
+        return RedirectToAction("Index", "Home");
 
         // If validation fails
-     //   return View("SignUp");
+        //   return View("SignUp");
     }
 }
