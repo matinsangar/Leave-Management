@@ -64,8 +64,14 @@ public class AccountController : Controller
         };
         await employeesCollection.InsertOneAsync(newEmp);
         return RedirectToAction("Index", "Home");
+    }
 
-        // If validation fails
-        //   return View("SignUp");
+    public IActionResult Approve(int id)
+    {
+        return RedirectToAction("index", "Home");
+    }
+    public IActionResult RejectLeave(int id)
+    {
+        return RedirectToAction("index", "Home");
     }
 }
