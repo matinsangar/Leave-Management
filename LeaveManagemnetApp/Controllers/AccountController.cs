@@ -77,7 +77,13 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> ApplyLeave(DateTime StartDate, DateTime EndDate, string Reason)
     {
-        await _mongoDbContext.SubmitNewLeaveRequest(StartDate, EndDate, Reason);
+        if (ModelState.IsValid)
+        {
+            await _mongoDbContext.SubmitNewLeaveRequest(StartDate, EndDate, Reason);
+            return RedirectToAction("ApplyLeave");
+        }
+
+        TempData["ErrorMessage"] = "Invalid Request!!!";
         return RedirectToAction("ApplyLeave");
     }
 }
