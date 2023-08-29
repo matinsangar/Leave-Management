@@ -23,6 +23,11 @@ public class MongoDbContext
         get { return _database.GetCollection<Employee>("Employees"); }
     }
 
+    public IMongoCollection<ApplyLeave> LeaveRequests
+    {
+        get { return _database.GetCollection<ApplyLeave>("LeaveRequests"); }
+    }
+
     public async Task ResgisterUserAsync(string name, string password, string email)
     {
         var user = new Employee
@@ -32,6 +37,17 @@ public class MongoDbContext
             Email = email
         };
         await Employees.InsertOneAsync(user);
+    }
+
+    public async Task SubmitNewLeaveRequest(DateTime startDate, DateTime endDate, string reason)
+    {
+        var request = new ApplyLeave
+        {
+            StartDate = startDate,
+            EndDate = endDate,
+            Reason = reason
+        };
+        await LeaveRequests.InsertOneAsync(request);
     }
 
     public async Task<bool> VerifyLoginAsync(string name, string password)

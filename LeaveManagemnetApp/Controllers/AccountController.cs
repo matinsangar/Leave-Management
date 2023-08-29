@@ -55,7 +55,7 @@ public class AccountController : Controller
         var isLoginValid = await _mongoDbContext.VerifyLoginAsync(username, password);
         if (isLoginValid)
         {
-            return RedirectToAction("index", "Home");
+            return RedirectToAction("ApplyLeave");
         }
 
         TempData["ErrorMessage"] = "Invalid username or password.";
@@ -75,13 +75,9 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApplyLeave(ApplyLeave model)
+    public async Task<IActionResult> ApplyLeave(DateTime StartDate, DateTime EndDate, string Reason)
     {
-        if (ModelState.IsValid)
-        {
-            return RedirectToAction("index", "Home");
-        }
-
-        return View(model);
+        await _mongoDbContext.SubmitNewLeaveRequest(StartDate, EndDate, Reason);
+        return RedirectToAction("ApplyLeave");
     }
 }
