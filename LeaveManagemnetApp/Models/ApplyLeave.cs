@@ -17,6 +17,7 @@ namespace LeaveManagemnetApp.Models
 
         [Required]
         [Display(Name = "Reason")]
+        [MinLength(5)]
         public string Reason { get; set; }
     }
 }
