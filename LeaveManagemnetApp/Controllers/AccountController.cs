@@ -22,6 +22,22 @@ public class AccountController : Controller
     //     _mongoDatabase = mongoDatabase;
     // }
 
+    public IActionResult AdminPanel()
+    {
+        return RedirectToAction("index", "Home");
+    }
+
+    public IActionResult Approve(int id)
+    {
+        return RedirectToAction("index", "Home");
+    }
+
+    public IActionResult RejectLeave(int id)
+    {
+        return RedirectToAction("index", "Home");
+    }
+
+
     // GET
     public IActionResult Login()
     {
@@ -36,48 +52,36 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(string username, string password)
     {
-        var filter = Builders<Employee>.Filter.Eq("Name", username);
-        var user = await _mongoDbContext.Employees.Find(filter).FirstOrDefaultAsync();
-
-        if (user != null && user.Password == password)
+        var isLoginValid = await _mongoDbContext.VerifyLoginAsync(username, password);
+        if (isLoginValid)
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("index", "Home");
         }
 
         TempData["ErrorMessage"] = "Invalid username or password.";
         return RedirectToAction("Login");
     }
 
+    public IActionResult ApplyLeave()
+    {
+        return View();
+    }
+
     [HttpPost]
     public async Task<IActionResult> SignUp(string name, string password, string email)
     {
-        var mongoDbContext = HttpContext.RequestServices.GetService<MongoDbContext>();
+        await _mongoDbContext.ResgisterUserAsync(name, password, email);
+        return RedirectToAction("Login");
+    }
 
-
-        var employeesCollection = mongoDbContext.Employees;
-        var newEmp = new Employee()
+    [HttpPost]
+    public async Task<IActionResult> ApplyLeave(ApplyLeave model)
+    {
+        if (ModelState.IsValid)
         {
-            Name = name,
-            Email = email,
-            IsAdmin = false,
-            Password = password
-        };
-        await employeesCollection.InsertOneAsync(newEmp);
-        return RedirectToAction("Index", "Home");
-    }
+            return RedirectToAction("index", "Home");
+        }
 
-    public IActionResult AdminPanel()
-    {
-        return RedirectToAction("index", "Home");
-    }
-
-    public IActionResult Approve(int id)
-    {
-        return RedirectToAction("index", "Home");
-    }
-
-    public IActionResult RejectLeave(int id)
-    {
-        return RedirectToAction("index", "Home");
+        return View(model);
     }
 }

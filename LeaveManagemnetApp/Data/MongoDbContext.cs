@@ -22,4 +22,27 @@ public class MongoDbContext
     {
         get { return _database.GetCollection<Employee>("Employees"); }
     }
+
+    public async Task ResgisterUserAsync(string name, string password, string email)
+    {
+        var user = new Employee
+        {
+            Name = name,
+            Password = password,
+            Email = email
+        };
+        await Employees.InsertOneAsync(user);
+    }
+
+    public async Task<bool> VerifyLoginAsync(string name, string password)
+    {
+        var filter = Builders<Employee>.Filter.Eq("Name", name);
+        var user = await Employees.Find(e => e.Name == name).FirstOrDefaultAsync();
+        if (user != null && user.Password == password)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
