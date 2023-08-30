@@ -38,18 +38,6 @@ public class MongoDbContext
         };
         await Employees.InsertOneAsync(user);
     }
-
-    public async Task SubmitNewLeaveRequest(DateTime startDate, DateTime endDate, string reason)
-    {
-        var request = new ApplyLeave
-        {
-            StartDate = startDate,
-            EndDate = endDate,
-            Reason = reason
-        };
-        await LeaveRequests.InsertOneAsync(request);
-    }
-
     public async Task<bool> VerifyLoginAsync(string name, string password)
     {
         var filter = Builders<Employee>.Filter.Eq("Name", name);
@@ -61,4 +49,17 @@ public class MongoDbContext
 
         return false;
     }
+    public async Task SubmitNewLeaveRequest(string name, string employeeId, DateTime startDate, DateTime endDate, string reason)
+    {
+        var request = new ApplyLeave
+        {
+            Name = name,
+            EmployeeID = employeeId,
+            StartDate = startDate,
+            EndDate = endDate,
+            Reason = reason
+        };
+        await LeaveRequests.InsertOneAsync(request);
+    }
+
 }

@@ -6,6 +6,13 @@ namespace LeaveManagemnetApp.Models
     public class ApplyLeave
     {
         [Required]
+        [MinLength(3)]
+        public string Name { get; set; }
+        [Required]
+        [MinLength(3)]
+        public string EmployeeID { get; set; }
+
+        [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }

@@ -10,34 +10,22 @@ namespace LeaveManagemnetApp.Controllers;
 public class AccountController : Controller
 {
     private readonly MongoDbContext _mongoDbContext;
-//    private readonly IMongoDatabase _mongoDatabase;
-
     public AccountController(MongoDbContext mongoDbContext)
     {
         _mongoDbContext = mongoDbContext;
     }
-
-    // public AccountController(IMongoDatabase mongoDatabase)
-    // {
-    //     _mongoDatabase = mongoDatabase;
-    // }
-
     public IActionResult AdminPanel()
     {
         return RedirectToAction("index", "Home");
     }
-
     public IActionResult Approve(int id)
     {
         return RedirectToAction("index", "Home");
     }
-
     public IActionResult RejectLeave(int id)
     {
         return RedirectToAction("index", "Home");
     }
-
-
     // GET
     public IActionResult Login()
     {
@@ -75,11 +63,12 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApplyLeave(DateTime StartDate, DateTime EndDate, string Reason)
+    public async Task<IActionResult> ApplyLeave(string Name, string EmployeeID, DateTime StartDate, DateTime EndDate,
+        string Reason)
     {
         if (ModelState.IsValid)
         {
-            await _mongoDbContext.SubmitNewLeaveRequest(StartDate, EndDate, Reason);
+            await _mongoDbContext.SubmitNewLeaveRequest(Name, EmployeeID, StartDate, EndDate, Reason);
             return RedirectToAction("ApplyLeave");
         }
 

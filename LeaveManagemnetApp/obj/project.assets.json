@@ -789,11 +789,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/macbookair/leave-manager/LeaveManagemnetApp/LeaveManagemnetApp.csproj",
+      "projectUniqueName": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/LeaveManagemnetApp.csproj",
       "projectName": "LeaveManagemnetApp",
-      "projectPath": "/Users/macbookair/leave-manager/LeaveManagemnetApp/LeaveManagemnetApp.csproj",
+      "projectPath": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/LeaveManagemnetApp.csproj",
       "packagesPath": "/Users/macbookair/.nuget/packages/",
-      "outputPath": "/Users/macbookair/leave-manager/LeaveManagemnetApp/obj/",
+      "outputPath": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/macbookair/.nuget/NuGet/NuGet.Config"
