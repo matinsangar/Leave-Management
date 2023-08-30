@@ -20,7 +20,11 @@ public class AccountController : Controller
     {
         return View();
     }
-
+    //
+    // public IActionResult ApplyStatus()
+    // {
+    //     return View();
+    // }
 
     // GET
     public IActionResult Login()
@@ -51,9 +55,9 @@ public class AccountController : Controller
     {
         var isLoginValid = await _mongoDbContext.VerifyLoginAsync(username, password);
         var isUserAdmin = await _mongoDbContext.VerifyIsAdminAsync(username, password);
-        if (isLoginValid && isUserAdmin )
+        if (isLoginValid && isUserAdmin)
         {
-            return RedirectToAction("AdminPanel","Account");
+            return RedirectToAction("AdminPanel", "Account");
         }
         else if (isLoginValid && isUserAdmin == false)
         {
@@ -68,13 +72,27 @@ public class AccountController : Controller
     public async Task<IActionResult> ApplyLeave(string Name, string EmployeeID, DateTime StartDate, DateTime EndDate,
         string Reason)
     {
+        TempData["EmployeeID"] = EmployeeID;
         if (ModelState.IsValid)
         {
             await _mongoDbContext.SubmitNewLeaveRequest(Name, EmployeeID, StartDate, EndDate, Reason);
-            return RedirectToAction("ApplyLeave");
+            //    TempData["EmployeeID"] = EmployeeID;
+            return RedirectToAction("ApplyStatus");
         }
 
         TempData["ErrorMessage"] = "Invalid Request!!!";
+        return RedirectToAction("ApplyLeave");
+    }
+
+    public async Task<IActionResult> ApplyStatus()
+    {
+        var employeeId = TempData["EmployeeID"].ToString();
+        if (employeeId != null)
+        {
+            var requests = await _mongoDbContext.GetLeaveRequestsByUserId(employeeId);
+            return View(requests);
+        }
+
         return RedirectToAction("ApplyLeave");
     }
 }

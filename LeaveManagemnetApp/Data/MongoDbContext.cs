@@ -71,4 +71,10 @@ public class MongoDbContext
         };
         await LeaveRequests.InsertOneAsync(request);
     }
+
+    public async Task<List<ApplyLeave>> GetLeaveRequestsByUserId(string employeeId)
+    {
+        var requests = await LeaveRequests.Find(e => e.EmployeeID == employeeId).ToListAsync();
+        return requests;
+    }
 }

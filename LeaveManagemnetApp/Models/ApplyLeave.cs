@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace LeaveManagemnetApp.Models
 {
@@ -8,6 +10,7 @@ namespace LeaveManagemnetApp.Models
         [Required]
         [MinLength(3)]
         public string Name { get; set; }
+        [BsonId]
         [Required]
         [MinLength(3)]
         public string EmployeeID { get; set; }
@@ -26,5 +29,9 @@ namespace LeaveManagemnetApp.Models
         [Display(Name = "Reason")]
         [MinLength(5)]
         public string Reason { get; set; }
+        
+        [Display(Name = "Status")]
+        [DefaultValue("In proccess")]
+        public string Status { get; set; }
     }
 }
