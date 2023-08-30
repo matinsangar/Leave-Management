@@ -16,8 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/macbookair/LeaveManager/LeaveManagemnetApp
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/AdminPanle.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BZG1pblBhbmxlLmNzaHRtbA==
+[/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/AdminPanel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BZG1pblBhbmVsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/ApplyLeave.cshtml]

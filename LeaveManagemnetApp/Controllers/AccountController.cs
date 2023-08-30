@@ -10,22 +10,18 @@ namespace LeaveManagemnetApp.Controllers;
 public class AccountController : Controller
 {
     private readonly MongoDbContext _mongoDbContext;
+
     public AccountController(MongoDbContext mongoDbContext)
     {
         _mongoDbContext = mongoDbContext;
     }
+
     public IActionResult AdminPanel()
     {
-        return RedirectToAction("index", "Home");
+        return View();
     }
-    public IActionResult Approve(int id)
-    {
-        return RedirectToAction("index", "Home");
-    }
-    public IActionResult RejectLeave(int id)
-    {
-        return RedirectToAction("index", "Home");
-    }
+
+
     // GET
     public IActionResult Login()
     {
@@ -37,18 +33,6 @@ public class AccountController : Controller
         return View();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Login(string username, string password)
-    {
-        var isLoginValid = await _mongoDbContext.VerifyLoginAsync(username, password);
-        if (isLoginValid)
-        {
-            return RedirectToAction("ApplyLeave");
-        }
-
-        TempData["ErrorMessage"] = "Invalid username or password.";
-        return RedirectToAction("Login");
-    }
 
     public IActionResult ApplyLeave()
     {
@@ -59,6 +43,24 @@ public class AccountController : Controller
     public async Task<IActionResult> SignUp(string name, string password, string email)
     {
         await _mongoDbContext.ResgisterUserAsync(name, password, email);
+        return RedirectToAction("Login");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login(string username, string password)
+    {
+        var isLoginValid = await _mongoDbContext.VerifyLoginAsync(username, password);
+        var isUserAdmin = await _mongoDbContext.VerifyIsAdminAsync(username, password);
+        if (isLoginValid && isUserAdmin )
+        {
+            return RedirectToAction("AdminPanel","Account");
+        }
+        else if (isLoginValid && isUserAdmin == false)
+        {
+            return RedirectToAction("ApplyLeave");
+        }
+
+        TempData["ErrorMessage"] = "Invalid username or password.";
         return RedirectToAction("Login");
     }
 

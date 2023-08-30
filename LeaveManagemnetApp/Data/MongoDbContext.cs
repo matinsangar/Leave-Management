@@ -38,6 +38,7 @@ public class MongoDbContext
         };
         await Employees.InsertOneAsync(user);
     }
+
     public async Task<bool> VerifyLoginAsync(string name, string password)
     {
         var filter = Builders<Employee>.Filter.Eq("Name", name);
@@ -49,7 +50,16 @@ public class MongoDbContext
 
         return false;
     }
-    public async Task SubmitNewLeaveRequest(string name, string employeeId, DateTime startDate, DateTime endDate, string reason)
+
+    public async Task<bool> VerifyIsAdminAsync(string name, string password)
+    {
+        var filter = Builders<Employee>.Filter.Eq("Name", name);
+        var user = await Employees.Find(e => e.Name == name).FirstOrDefaultAsync();
+        return user.IsAdmin;
+    }
+
+    public async Task SubmitNewLeaveRequest(string name, string employeeId, DateTime startDate, DateTime endDate,
+        string reason)
     {
         var request = new ApplyLeave
         {
@@ -61,5 +71,4 @@ public class MongoDbContext
         };
         await LeaveRequests.InsertOneAsync(request);
     }
-
 }
