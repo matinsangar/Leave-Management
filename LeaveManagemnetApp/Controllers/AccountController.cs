@@ -20,12 +20,6 @@ public class AccountController : Controller
     {
         return View();
     }
-    //
-    // public IActionResult ApplyStatus()
-    // {
-    //     return View();
-    // }
-
     // GET
     public IActionResult Login()
     {
@@ -76,14 +70,12 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             await _mongoDbContext.SubmitNewLeaveRequest(Name, EmployeeID, StartDate, EndDate, Reason);
-            //    TempData["EmployeeID"] = EmployeeID;
             return RedirectToAction("ApplyStatus");
         }
 
         TempData["ErrorMessage"] = "Invalid Request!!!";
         return RedirectToAction("ApplyLeave");
     }
-
     public async Task<IActionResult> ApplyStatus()
     {
         var employeeId = TempData["EmployeeID"].ToString();
