@@ -8,13 +8,8 @@ namespace LeaveManagemnetApp.Models
 {
     public class ApplyLeave
     {
-        [Required]
-        [MinLength(3)]
-        public string Name { get; set; }
-        [BsonId]
-        [Required]
-        [MinLength(3)]
-        public string EmployeeID { get; set; }
+        [Required] [MinLength(3)] public string Name { get; set; }
+        [BsonId] [Required] [MinLength(3)] public string EmployeeID { get; set; }
 
         [Required]
         [Display(Name = "Start Date")]
@@ -30,9 +25,13 @@ namespace LeaveManagemnetApp.Models
         [Display(Name = "Reason")]
         [MinLength(5)]
         public string Reason { get; set; }
-        
+
         [Display(Name = "Status")]
-        [DefaultValue("In proccess")]
         public string Status { get; set; }
+
+        public ApplyLeave()
+        {
+            Status = "in proccess";
+        }
     }
 }

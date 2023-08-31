@@ -61,13 +61,14 @@ public class MongoDbContext
     public async Task SubmitNewLeaveRequest(string name, string employeeId, DateTime startDate, DateTime endDate,
         string reason)
     {
-        var request = new ApplyLeave
+        var request = new ApplyLeave()
         {
             Name = name,
             EmployeeID = employeeId,
             StartDate = startDate,
             EndDate = endDate,
-            Reason = reason
+            Reason = reason,
+           // Status = "In process"  //default value in default constructor 
         };
         await LeaveRequests.InsertOneAsync(request);
     }
