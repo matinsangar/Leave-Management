@@ -4,28 +4,30 @@
     ViewData["Title"] = "Apply Result";
 }
 
-<h2>Apply Result</h2>
+<h2 class="text-info">Apply Result</h2>
 
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Reason</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>@Model.StartDate.ToShortDateString()</td>
-            <td>@Model.EndDate.ToShortDateString()</td>
-            <td>@Model.Reason</td>
-            <td>@Model.Status</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-light table-bordered">
+            <thead>
+            <tr class="text-light">
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>@Model.StartDate.ToShortDateString()</td>
+                <td>@Model.EndDate.ToShortDateString()</td>
+                <td>@Model.Reason</td>
+                <td>@Model.Status</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
