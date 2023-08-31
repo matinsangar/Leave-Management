@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KuldXmHxGyAraa5/nCJF/WitsiOWiEMdpRcReosxoYA=",
+  "Hash": "Kyq1Po16Gr/iqmWfCL0dLGMmRsL91plfJ7jrvnBDwFk=",
   "Source": "LeaveManagemnetApp",
   "BasePath": "_content/LeaveManagemnetApp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/obj/Debug/net7.0/scopedcss/projectbundle/LeaveManagemnetApp.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/wwwroot/.DS_Store",
+      "SourceId": "LeaveManagemnetApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/wwwroot/",
+      "BasePath": "_content/LeaveManagemnetApp",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
     },
     {
       "Identity": "/Users/macbookair/LeaveManager/LeaveManagemnetApp/wwwroot/css/site.css",

@@ -22,7 +22,7 @@
                             <th>End Date</th>
                             <th>Reason</th>
                             <th>Status</th>
-                            <th>Actions</th> <!-- New column for buttons -->
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,13 +49,10 @@
 @section Scripts {
     <script>
         function approveRequest(employeeID) {
-            // You can use JavaScript or AJAX to send a request to the server to update the status.
-            // For simplicity, let's assume there's a route in your controller to handle the approval.
             window.location.href = `/Account/ApproveRequest?employeeID=${employeeID}`;
         }
 
         function rejectRequest(employeeID) {
-            // Similar to the approveRequest function, redirect to a route for rejection.
             window.location.href = `/Account/RejectRequest?employeeID=${employeeID}`;
         }
     </script>

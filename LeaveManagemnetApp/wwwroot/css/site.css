@@ -81,3 +81,10 @@ h1, h2, h3, h4, h5, h6 {
     color: rgba(26, 25, 25, 0.8);
 }
 
+.favicon-zoom{
+    transition: transform 0.2s;
+    transform: scale(1.10);
+}
+.favicon-zoom:hover {
+    transform: scale(1.2);
+}
