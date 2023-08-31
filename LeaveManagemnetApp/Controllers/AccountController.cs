@@ -119,4 +119,23 @@ public class AccountController : Controller
     {
         return View();
     }
+    [HttpPost]
+    public IActionResult SubmitCheckApplyStatus(string EmployeeID)
+    {
+        return RedirectToAction("ShowApplyStatus", new { EmployeeID });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ShowApplyStatus(string EmployeeId)
+    {
+        var request = await _mongoDbContext.GetRequestsByUserId(EmployeeId);
+        if (request != null)
+        {
+            return View("ApplyResult", request);
+        }
+        else
+        {
+            return View("ApplyResultNotFound");
+        }
+    }
 }

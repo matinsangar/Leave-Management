@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
@@ -28,6 +29,5 @@ namespace LeaveManagemnetApp.Models
 
         [Display(Name = "Status")]
         public string Status { get; set; }
-
     }
 }

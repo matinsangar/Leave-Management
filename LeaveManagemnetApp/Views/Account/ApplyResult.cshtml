@@ -1,0 +1,33 @@
+@model LeaveManagemnetApp.Models.ApplyLeave
+
+@{
+    ViewData["Title"] = "Apply Result";
+}
+
+<h2>Apply Result</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Model.StartDate.ToShortDateString()</td>
+            <td>@Model.EndDate.ToShortDateString()</td>
+            <td>@Model.Reason</td>
+            <td>@Model.Status</td>
+        </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No leave request found for the provided employee ID.</p>
+}

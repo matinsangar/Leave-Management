@@ -6,11 +6,10 @@
 
 <h2>Check Apply Status</h2>
 
-<form method="post" action="@Url.Action("CheckApplyStatus", "Account")">
+<form method="post" asp-action="SubmitCheckApplyStatus">
     <div class="form-group">
         <label for="inputEmployeeID" class="text-light">Employee ID</label>
-        <input type="text" class="form-control" id="inputEmployeeID" name="employeeID">
+        <input type="text" class="form-control" id="inputEmployeeID" name="EmployeeID">
     </div>
-    <button type="submit" class="btn btn-primary">Check Status</button>
+    <button type="submit" class="btn btn-primary" style="margin-top: 7px">Check Status</button>
 </form>
-

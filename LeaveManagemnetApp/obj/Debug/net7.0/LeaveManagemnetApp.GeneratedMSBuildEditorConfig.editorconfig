@@ -24,6 +24,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BcHBseUxlYXZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/ApplyResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BcHBseVJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/ApplyResultNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BcHBseVJlc3VsdE5vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/macbookair/LeaveManager/LeaveManagemnetApp/Views/Account/ApplyStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BcHBseVN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
