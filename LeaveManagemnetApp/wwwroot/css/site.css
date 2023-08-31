@@ -71,8 +71,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 770px) {
-    h2, p ,footer{
+    h2, p, footer {
         text-align: center;
+    }
+
+    .custom-btn {
+        width: 100%;
+        margin: 5px 0;
+        display: flex;
+        justify-content: center;
     }
 
 }
@@ -81,10 +88,11 @@ h1, h2, h3, h4, h5, h6 {
     color: rgba(26, 25, 25, 0.8);
 }
 
-.favicon-zoom{
+.favicon-zoom {
     transition: transform 0.2s;
     transform: scale(1.10);
 }
+
 .favicon-zoom:hover {
     transform: scale(1.2);
 }
