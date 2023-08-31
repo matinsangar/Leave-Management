@@ -1,9 +1,41 @@
-@model List<LeaveManagemnetApp.Models.Employee>
+@model List<ApplyLeave>
+
 @{
     ViewData["Title"] = "AdminPanel";
 }
-<h2>Leave Requests</h2>
-
-<div>
-    <p>Welcome to the AdminPanel</p>
+<div class="container">
+    <h2 class="text-light">Admin Panel - Leave Requests</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-light">Welcome to the Admin Panel</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-light">Apply Status</h3>
+            <div class="table-responsive">
+                <table class="table table-light table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var request in Model)
+                    {
+                        <tr>
+                            <td>@request.StartDate.ToShortDateString()</td>
+                            <td>@request.EndDate.ToShortDateString()</td>
+                            <td>@request.Reason</td>
+                            <td>@request.Status</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

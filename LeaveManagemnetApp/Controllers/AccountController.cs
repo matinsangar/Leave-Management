@@ -16,10 +16,6 @@ public class AccountController : Controller
         _mongoDbContext = mongoDbContext;
     }
 
-    public IActionResult AdminPanel()
-    {
-        return View();
-    }
     // GET
     public IActionResult Login()
     {
@@ -76,6 +72,7 @@ public class AccountController : Controller
         TempData["ErrorMessage"] = "Invalid Request!!!";
         return RedirectToAction("ApplyLeave");
     }
+
     public async Task<IActionResult> ApplyStatus()
     {
         var employeeId = TempData["EmployeeID"].ToString();
@@ -86,5 +83,11 @@ public class AccountController : Controller
         }
 
         return RedirectToAction("ApplyLeave");
+    }
+
+    public async Task<IActionResult> AdminPanel()
+    {
+        var requests = await _mongoDbContext.GetAllLeaveRequests();
+        return View(requests);
     }
 }
