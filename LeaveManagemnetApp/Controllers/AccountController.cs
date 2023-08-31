@@ -90,6 +90,7 @@ public class AccountController : Controller
         var requests = await _mongoDbContext.GetAllLeaveRequests();
         return View(requests);
     }
+
     public async Task<IActionResult> ApproveRequest(string employeeID)
     {
         var request = await _mongoDbContext.GetRequestsByUserId(employeeID);
@@ -114,5 +115,8 @@ public class AccountController : Controller
         return RedirectToAction("AdminPanel");
     }
 
-
+    public IActionResult CheckApplyStatus()
+    {
+        return View();
+    }
 }

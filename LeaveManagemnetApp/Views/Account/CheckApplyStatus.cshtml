@@ -1,0 +1,16 @@
+@model string
+
+@{
+    ViewData["Title"] = "Check Apply Status";
+}
+
+<h2>Check Apply Status</h2>
+
+<form method="post" action="@Url.Action("CheckApplyStatus", "Account")">
+    <div class="form-group">
+        <label for="inputEmployeeID" class="text-light">Employee ID</label>
+        <input type="text" class="form-control" id="inputEmployeeID" name="employeeID">
+    </div>
+    <button type="submit" class="btn btn-primary">Check Status</button>
+</form>
+
