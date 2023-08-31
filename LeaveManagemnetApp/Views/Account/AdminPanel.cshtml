@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "AdminPanel";
 }
+
 <div class="container">
     <h2 class="text-light">Admin Panel - Leave Requests</h2>
     <div class="row">
@@ -16,26 +17,46 @@
             <div class="table-responsive">
                 <table class="table table-light table-bordered">
                     <thead>
-                    <tr>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Reason</th>
-                        <th>Status</th>
-                    </tr>
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th> <!-- New column for buttons -->
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var request in Model)
-                    {
-                        <tr>
-                            <td>@request.StartDate.ToShortDateString()</td>
-                            <td>@request.EndDate.ToShortDateString()</td>
-                            <td>@request.Reason</td>
-                            <td>@request.Status</td>
-                        </tr>
-                    }
+                        @foreach (var request in Model)
+                        {
+                            <tr>
+                                <td>@request.StartDate.ToShortDateString()</td>
+                                <td>@request.EndDate.ToShortDateString()</td>
+                                <td>@request.Reason</td>
+                                <td>@request.Status</td>
+                                <td>
+                                    <button class="btn btn-success" onclick="approveRequest('@request.EmployeeID')">Approve</button>
+                                    <button class="btn btn-danger" onclick="rejectRequest('@request.EmployeeID')">Reject</button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function approveRequest(employeeID) {
+            // You can use JavaScript or AJAX to send a request to the server to update the status.
+            // For simplicity, let's assume there's a route in your controller to handle the approval.
+            window.location.href = `/Account/ApproveRequest?employeeID=${employeeID}`;
+        }
+
+        function rejectRequest(employeeID) {
+            // Similar to the approveRequest function, redirect to a route for rejection.
+            window.location.href = `/Account/RejectRequest?employeeID=${employeeID}`;
+        }
+    </script>
+}

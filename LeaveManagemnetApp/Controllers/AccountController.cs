@@ -90,4 +90,29 @@ public class AccountController : Controller
         var requests = await _mongoDbContext.GetAllLeaveRequests();
         return View(requests);
     }
+    public async Task<IActionResult> ApproveRequest(string employeeID)
+    {
+        var request = await _mongoDbContext.GetRequestsByUserId(employeeID);
+        if (request != null)
+        {
+            request.Status = "Approved";
+            _mongoDbContext.UpdateLeaveRequest(request);
+        }
+
+        return RedirectToAction("AdminPanel");
+    }
+
+    public async Task<IActionResult> RejectRequest(string employeeID)
+    {
+        var request = await _mongoDbContext.GetRequestsByUserId(employeeID);
+        if (request != null)
+        {
+            request.Status = "Rejected";
+            _mongoDbContext.UpdateLeaveRequest(request);
+        }
+
+        return RedirectToAction("AdminPanel");
+    }
+
+
 }

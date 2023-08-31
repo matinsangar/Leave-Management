@@ -29,9 +29,5 @@ namespace LeaveManagemnetApp.Models
         [Display(Name = "Status")]
         public string Status { get; set; }
 
-        public ApplyLeave()
-        {
-            Status = "in proccess";
-        }
     }
 }

@@ -68,7 +68,8 @@ public class MongoDbContext
             StartDate = startDate,
             EndDate = endDate,
             Reason = reason,
-           // Status = "In process"  //default value in default constructor 
+            Status = "In process"
+            // Status ===>  default value in default constructor "In process"
         };
         await LeaveRequests.InsertOneAsync(request);
     }
@@ -79,9 +80,23 @@ public class MongoDbContext
         return requests;
     }
 
+    public async Task<ApplyLeave> GetRequestsByUserId(string employeeId)
+    {
+        var requests = await LeaveRequests.Find(e => e.EmployeeID == employeeId).FirstOrDefaultAsync();
+        return requests;
+    }
+
     public async Task<List<ApplyLeave>> GetAllLeaveRequests()
     {
         var request = await LeaveRequests.Find((_ => true)).ToListAsync();
         return request;
+    }
+
+    public void UpdateLeaveRequest(ApplyLeave request)
+    {
+        var filter = Builders<ApplyLeave>.Filter.Eq("_id", request.EmployeeID);
+        var update = Builders<ApplyLeave>.Update
+            .Set("Status", request.Status);
+        LeaveRequests.UpdateOne(filter, update);
     }
 }
